@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Colorizer</title>
+    <style>
+        *{
+           font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+        .head{
+            position: relative;
+            height: 100px;
+            background-image: linear-gradient(to right,white,black,white,black,violet,indigo,blue,green,yellow,orange,red );
+            opacity: 0.7;
+            }
+
+        h1 {
+        margin: 0;
+        padding: 20px 0;
+        font: 44px ;
+        text-align: center;
+        opacity:1;
+        
+        }
+        .heading {
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+            }
+            h2{
+                text-align: center;
+
+            }
+            .img1{
+                width: auto;
+                max-height: 400px;
+                max-width: 600px;
+                padding: 10px;
+            }
+            .container1{
+                border: 4px solid red;
+                position: absolute;
+                top:25%;
+                left:5%;
+                padding: 10px;
+                
+
+            }
+            .container2{
+                border: 4px solid red;
+                position: absolute;
+                top:25%;
+                right:5%;
+                padding: 10px;
+            }
+            .form1{
+                position: absolute;
+                left:20%;
+                bottom:5%;
+            }
+            
+            .convert{
+                position: absolute;
+                right: 30%;
+                bottom: 5%;
+            }
+            a{
+                position: absolute;
+                right: 20%;
+                bottom: 5%;
+                text-decoration: none;
+                width:100px;
+                height:40px;
+                background-color: salmon;
+                color: white;
+                text-align: center;
+                border-radius: 10px;
+                padding-top:10px;
+            }
+            .msg{
+                color:Red;
+                font-size:20px;
+                position: absolute;
+                bottom: 3%;
+                left:35%;
+            }
+    </style>
+  </head>
+  <body>
+    
+    <div class="head">
+    
+    </div>
+    <h1 class="heading">Convert Your Images from Black and White to Vibrant Colors</h1>
+    <div class="msg">
+        {% if msg!="": %}
+        <p>{{msg}}</p>
+        {% endif %}
+    </div>
+    <div class="container1">
+        {% if path.exists('D:/HCI Jcomp/static/img/test.jpg') %}
+        <img src={{d}} class="img1">
+        {% else %}
+        <img src="static/img/blank.jpg" class="img1">
+        {% endif %}
+    
+    </div>
+    <div class="container2">
+        {% if path.exists('D:/HCI Jcomp/static/img/out.jpg') %}
+        <img src="static/img/out.jpg" class="img1">
+        {% else %}
+        <img src="static/img/blank.jpg" class="img1">
+        {% endif %}
+       
+    </div>
+    <form action="/uploadImage" method="POST" enctype="multipart/form-data" class="form1">
+        <div class="form-group">
+       
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" name="image" id="image">
+        </div>
+        </div><br>
+        <button type="submit" class="btn btn-primary">Upload Image</button>
+        
+    </form>
+    <form action="/colorize" class="convert">
+        <button type="submit" class="btn btn-primary" id="convert">Colorize</button>
+        
+    </form>
+    
+        <a href="{{url_for('download_file')}}">download</a>
+        
+    
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
